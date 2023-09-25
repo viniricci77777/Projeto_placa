@@ -1,0 +1,28 @@
+Projeto de Cancela Automática com Reconhecimento de Placas de Carros
+
+Vinicius Ricci, vou falar sobre todas experiências, aprendizados e desafios que tive para a elaboração.
+Desenvolvimento do site:
+No começo confesso que estava meio perdido, pois não sabia nem por onde começava a fazer, mas vendo por cima, vi que precisava saber o básico de HTML e CSS, sendo assim, corri atrás por conta para entender um pouco sobre o que era isso.
+
+Primeiro, fomos atrás do domínio do site para usar o nome de “UniPark”. Feito isso, corri atrás de conhecimento na internet para dar seguimento na criação do site. Fizemos então o layout do site, para que as pessoas conseguissem ver assim que abrisse o site, e decidimos de vez usar o CSS para deixar o site como uma visão melhor.
+
+Para que serve o site:
+
+Na página principal,fica toda a vitrine do nosso projeto, onde todos que acessarem poderão entender oque está sendo mostrado, mas contém somente o layouts e os designs. 
+
+Painel de controle: Essa é e foi a parte principal do projeto, pois só quem realizar a compra do nosso “produto” poderá ter acesso completo do nosso site. Ainda no painel de controle, nossa ideia é mostrar todo o histórico das entradas e saídas de carros que serão feitas pela cancela, podendo também mostrar a data, os horários e todas as demais informações que serão úteis para os donos de cada carro. 
+
+E por fim, nosso objetivo também é facilitar o controle desse grande “movimento” de carros, ajudando assim os guardas e porteiros a ter o total controle sobre o que está acontecendo, tendo assim todas as informações necessárias em suas mãos.
+
+Como não precisei programar tanto para o site, decidi ajudar o pessoal do banco de dados a programar, pois esse código futuramente usaremos no site. 
+
+Criamos a classe database: Essa classe é responsável pela conexão com o banco de dados MySQL. Ela possui atributos para armazenar informações de conexão, como host, usuário, senha e nome do banco de dados. 
+
+Classe imagem: Essa classe trata principalmente com a captura de imagens da webcam, o processamento dessas imagens serve para reconhecimento de placas. 
+
+Principais partes:_ImageCapture(): Esse método captura imagens da webcam e mostra em uma janela.
+Após a captura, ele chama os métodos _contorno_imagem(), _preProcessamentoRoi() e _ocrImagePlate() para processar a imagem._contorno_imagem(frame): Este método realiza várias etapas de processamento na imagem capturada, incluindo redimensionamento, conversão para tons de cinza, desfoque e detecção de contornos. 
+Ele procura por contornos que possam representar placas de automóveis._preProcessamentoRoi(): Esse método como diz o nome ele pré-processa a região de interesse da imagem, que é a parte onde a placa do carro foi detectada. 
+O desfoque._ocrImagePlate(): Esse método realiza o OCR na imagem da placa do carro usando pytesseract. 
+Ele também consulta um banco de dados MySQL para verificar se a placa reconhecida corresponde a alguma entrada que está no banco de dados.
+A função principal é criar uma classe de imagem e iniciar uma thread para executar o método _ImageCapture(). Esse método vai permitir que a captura de imagens ocorra em um  segundo plano enquanto outras partes do programa estão em execução.
